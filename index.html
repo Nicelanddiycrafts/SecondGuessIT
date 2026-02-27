@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>SecondGuessIT</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="wrap">
+    <section class="card" role="application" aria-label="SecondGuessIT game">
+      <header class="header">
+        <h1>SecondGuessIT</h1>
+        <div class="subtitle">Because sounding right isn’t the same as being right.</div>
+        <div class="small">Keys: <span class="kbd">C</span> correct • <span class="kbd">I</span> incorrect • <span class="kbd">N</span> next • <span class="kbd">R</span> restart</div>
+      </header>
+
+      <div class="screen active" id="startScreen">
+        <p class="startCopy">
+          You’ll see a question and an AI generated answer. Your job is to decide whether the answer is
+          <span class="good">correct</span> or <span class="bad">incorrect</span>. Then we reveal the truth.
+        </p>
+        <div class="actions center">
+          <button class="btnPrimary" id="btnStart">Begin Game</button>
+        </div>
+      </div>
+
+      <div class="screen" id="gameScreen">
+        <div class="stats" aria-label="Stats">
+          <div class="pill">Score: <strong id="score">0</strong></div>
+          <div class="pill">Streak: <strong id="streak">0</strong></div>
+          <div class="pill">Progress: <strong id="progress">0</strong></div>
+        </div>
+
+        <div class="panel">
+          <div class="block">
+            <div class="label">Question</div>
+            <p class="qText" id="qText">—</p>
+          </div>
+
+          <div class="block">
+            <div class="label">AI Answer</div>
+            <p class="aiText" id="aiText">—</p>
+          </div>
+
+          <div class="actions center">
+            <button class="btnCorrect" id="btnCorrect">Correct</button>
+            <button class="btnIncorrect" id="btnIncorrect">Incorrect</button>
+            <button class="btnNext" id="btnNext" disabled>Next →</button>
+            <button class="btnRestart" id="btnRestart" title="Shuffle & restart">Restart</button>
+          </div>
+
+          <div class="reveal" id="reveal" hidden aria-live="polite">
+            <div class="resultLine">
+              <div>
+                <span class="chip" id="yourGuess">Your guess: —</span>
+                <span class="chip" id="truth">Truth: —</span>
+              </div>
+              <span class="chip" id="verdict">—</span>
+            </div>
+            <p class="explain" id="explain">—</p>
+            <p class="source" id="source">—</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
