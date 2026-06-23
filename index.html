@@ -1,88 +1,151 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-W5MG295476"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-W5MG295476');
-  </script>
-  <title>SecondGuessIt</title>
-  <link rel="stylesheet" href="styles.css" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Guess what happened in surprising, real-world AI stories.">
+  <meta name="theme-color" content="#f7eddb">
+  <title>SecondGuessIt | A game of surprising AI stories</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <main class="wrap">
-    <section class="card" role="application" aria-label="SecondGuessIt game">
-      <header class="header">
-        <div class="titleRow">
-          <h1>SecondGuessIt</h1>
-          <img class="titleRobot" id="titleRobot" src="Robot_title.png" alt="SecondGuessIt robot mascot" />
-        </div>
-        <div class="subtitle">Because sounding right isn't the same as being right.</div>
-        <div class="small">Keys: <span class="kbd">C</span> correct • <span class="kbd">I</span> incorrect • <span class="kbd">N</span> next • <span class="kbd">R</span> restart</div>
-      </header>
+  <header class="site-nav">
+    <div class="nav-inner">
+      <a class="brand" href="index.html" id="brandLink" aria-label="SecondGuessIt home">
+        <span class="brand-mark" aria-hidden="true">?</span>
+        <span>SecondGuessIt</span>
+      </a>
+      <button class="menu-button" type="button" aria-expanded="false" aria-controls="mainNavigation">
+        <span class="menu-icon" aria-hidden="true"></span>
+        <span>Menu</span>
+      </button>
+      <nav class="nav-links" id="mainNavigation" aria-label="Main navigation">
+        <a href="index.html?play=1">Play</a>
+        <button id="missionButton" type="button">Mission</button>
+        <a href="methodology.html">Sources</a>
+        <a href="credits.html">Credits</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <div class="game-status" id="gameStatus" hidden aria-label="Game status">
+        <span title="Score"><span aria-hidden="true">★</span> <strong id="score">0</strong></span>
+        <span title="Current streak"><span aria-hidden="true">🔥</span> <strong id="streak">0</strong></span>
+      </div>
+    </div>
+  </header>
 
-      <div class="screen active" id="startScreen">
-        <p class="startCopy">
-          You'll see a question and an AI generated answer. Your job is to decide whether the answer is
-          <span class="good">correct</span> or <span class="bad">incorrect</span>. Then we reveal the truth.
-        </p>
-        <div class="actions center">
-          <button class="btnPrimary" id="btnStart">Begin Game</button>
-        </div>
+  <main class="page-shell">
+    <section class="mission-page" id="missionScreen" hidden aria-labelledby="missionTitle">
+      <div class="mission-hero">
+        <p class="welcome">Why we made SecondGuessIt</p>
+        <h1 id="missionTitle">Our Mission</h1>
+        <p class="mission-intro">Help people understand what AI can do, where it can go wrong, and when its answers deserve a second look.</p>
+        <button class="primary-button mission-start-button" id="missionStartButton" type="button" disabled>Shuffling cards…</button>
       </div>
 
-      <div class="screen" id="gameScreen">
-        <div class="stats" aria-label="Stats">
-          <div class="pill">Score: <strong id="score">0</strong></div>
-          <div class="pill">Streak: <strong id="streak">0</strong></div>
-          <div class="pill">Progress: <strong id="progress">0</strong></div>
+      <article class="mission-copy">
+        <h2>Problem</h2>
+        <p>Many people use AI every day, but most people do not understand how AI fails. AI systems often sound confident even when they are wrong, biased, or unreliable.</p>
+        <h2>Solution</h2>
+        <p>SecondGuessIt helps people learn AI literacy through real-world AI incidents. Players read a short scenario and predict what actually went wrong. Every story is based on a documented AI failure.</p>
+        <h2>Why it matters</h2>
+        <p>AI is increasingly being used in education, healthcare, finance, law, and everyday decision-making. Understanding its limitations is becoming an important skill.</p>
+      </article>
+
+      <section class="mission-section" aria-labelledby="whyTitle">
+        <h2 id="whyTitle">Why this exists</h2>
+        <div class="reason-grid">
+          <article class="reason-card">
+            <span aria-hidden="true">✦</span>
+            <h3>AI is powerful</h3>
+            <p>It can help people create, learn, analyze information, and solve useful problems.</p>
+          </article>
+          <article class="reason-card">
+            <span aria-hidden="true">?</span>
+            <h3>AI makes mistakes</h3>
+            <p>It can hallucinate facts, repeat bias, misunderstand context, and fail after deployment.</p>
+          </article>
+          <article class="reason-card">
+            <span aria-hidden="true">↗</span>
+            <h3>AI is increasingly important</h3>
+            <p>These systems are entering healthcare, finance, education, law, and daily life.</p>
+          </article>
         </div>
+      </section>
 
-        <div class="panel">
-          <div class="block">
-            <div class="label">Question</div>
-            <p class="qText" id="qText">-</p>
-          </div>
+      <section class="stories-card" aria-labelledby="storiesTitle">
+        <h2 id="storiesTitle">About the stories</h2>
+        <p>Every card is based on a documented real-world AI incident. After answering, you can see what happened and follow the original source when one is available.</p>
+      </section>
+    </section>
 
-          <div class="block">
-            <div class="label">AI Answer</div>
-            <p class="aiText" id="aiText">-</p>
-          </div>
+    <section class="home-card" id="homeScreen" hidden aria-labelledby="homeTitle">
+      <div class="hero-doodle" aria-hidden="true">
+        <span class="doodle-spark">✦</span>
+        <span class="question-tile">?</span>
+        <span class="doodle-dot">●</span>
+      </div>
+      <p class="welcome">A little game about big AI mistakes</p>
+      <h1 id="homeTitle">Wait… that actually happened?</h1>
+      <p class="hero-copy">Guess how real AI systems went wrong, then uncover the story behind each surprise.</p>
+      <button class="primary-button hero-button" id="startButton" type="button" disabled>Shuffling cards…</button>
+      <p class="source-note">Real stories · No account · Play at your own pace</p>
+    </section>
 
-          <div class="actions center">
-            <button class="btnCorrect" id="btnCorrect">Correct</button>
-            <button class="btnIncorrect" id="btnIncorrect">Incorrect</button>
-            <button class="btnNext" id="btnNext" disabled>Next -&gt;</button>
-            <button class="btnRestart" id="btnRestart" title="Shuffle and restart">Restart</button>
-          </div>
+    <section class="game-view" id="gameScreen" hidden aria-label="AI story card game">
+      <article class="game-card" aria-labelledby="cardTitle">
+        <section id="questionFace">
+          <div class="category-pill" id="category">AI story</div>
+          <h2 id="cardTitle" tabindex="-1">Shuffling a card…</h2>
+          <p class="setup" id="setup"></p>
+          <h3 class="question" id="question">What happened next?</h3>
+          <div class="choices" id="choices" role="group" aria-labelledby="question"></div>
+        </section>
 
-          <div class="resultArea">
-            <div class="reveal" id="reveal" hidden aria-live="polite">
-              <div class="resultLine">
-                <div>
-                  <span class="chip" id="yourGuess">Your guess: -</span>
-                  <span class="chip" id="truth">Truth: -</span>
-                </div>
-                <span class="chip" id="verdict">-</span>
-              </div>
-              <p class="explain" id="explain">-</p>
-              <p class="source" id="source">-</p>
+        <section class="reveal" id="reveal" hidden aria-live="polite" aria-atomic="true">
+          <div class="result-badge" id="resultBadge">
+            <span class="result-icon" id="resultIcon" aria-hidden="true">✓</span>
+            <div>
+              <h2 id="resultTitle" tabindex="-1">You got it!</h2>
+              <p id="resultMessage">Good catch.</p>
             </div>
-            <aside class="gameRobotWrap" aria-live="polite">
-              <img class="gameRobot" id="gameRobot" src="Robot_confused.png" alt="Confused robot" />
-            </aside>
           </div>
-        </div>
-      </div>
+          <div class="correct-answer">
+            <div class="detail-label">Correct answer</div>
+            <p id="correctAnswer"></p>
+          </div>
+          <p class="explanation" id="explanation"></p>
+          <div class="incident">
+            <div class="detail-label">What really happened</div>
+            <p id="originalIncident"></p>
+          </div>
+          <a class="story-link" id="storyLink" target="_blank" rel="noopener noreferrer">
+            Read the full story <span aria-hidden="true">↗</span>
+          </a>
+          <button class="primary-button next-button" id="nextButton" type="button">
+            One more card <span aria-hidden="true">→</span>
+          </button>
+        </section>
+      </article>
+    </section>
+
+    <section class="error-card" id="errorScreen" hidden role="alert">
+      <div class="error-face" aria-hidden="true">?</div>
+      <h1>The cards got a little lost.</h1>
+      <p>Please refresh the page and try again.</p>
     </section>
   </main>
 
-  <footer class="siteFooter">© 2026 SecondGuessIT - CC BY-NC 4.0</footer>
-
+  <aside class="consent-banner" id="consentBanner" hidden aria-labelledby="consentTitle">
+    <div>
+      <h2 id="consentTitle">A quick privacy choice</h2>
+      <p>SecondGuessIt uses local storage to remember that you visited the Mission page. With your permission, Google Analytics also helps us understand general site usage.</p>
+    </div>
+    <div class="consent-actions">
+      <button class="consent-secondary" id="declineAnalytics" type="button">No analytics</button>
+      <button class="consent-primary" id="acceptAnalytics" type="button">Allow analytics</button>
+    </div>
+  </aside>
+  <script src="site.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

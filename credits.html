@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7eddb">
+  <title>Credits | SecondGuessIt</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-nav">
+    <div class="nav-inner">
+      <a class="brand" href="index.html" aria-label="SecondGuessIt home"><span class="brand-mark" aria-hidden="true">?</span><span>SecondGuessIt</span></a>
+      <button class="menu-button" type="button" aria-expanded="false" aria-controls="mainNavigation"><span class="menu-icon" aria-hidden="true"></span><span>Menu</span></button>
+      <nav class="nav-links" id="mainNavigation" aria-label="Main navigation">
+        <a href="index.html?play=1">Play</a>
+        <a href="index.html#mission">Mission</a>
+        <a href="methodology.html">Sources</a>
+        <a href="credits.html" aria-current="page">Credits</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+  <main class="page-shell content-page">
+    <section class="page-hero home-card">
+      <p class="welcome">People and projects behind the cards</p>
+      <h1>Credits</h1>
+      <p>SecondGuessIt is an educational project about the strengths and limitations of artificial intelligence.</p>
+    </section>
+    <article class="content-card">
+      <h2>AI incident data</h2>
+      <p>Many incidents featured in this project were adapted from <strong>Failed ML</strong>, created by Kenneth Leung. Failed ML collects documented examples of machine-learning and AI systems that experienced failures, bias, unexpected behavior, or deployment issues.</p>
+      <p><strong>Credit:</strong> Kenneth Leung<br><strong>Repository:</strong> <a class="story-link" href="https://github.com/kennethleungty/Failed-ML" target="_blank" rel="noopener noreferrer">github.com/kennethleungty/Failed-ML</a><br><strong>License:</strong> MIT License</p>
+    </article>
+    <article class="content-card">
+      <h2>Sources</h2>
+      <p>Each card is based on publicly documented reporting, research, or investigation. Links to original material are provided after cards when available.</p>
+    </article>
+    <article class="content-card">
+      <h2>Project purpose</h2>
+      <p>This project is intended for education. Its goal is to help people understand how AI systems can fail and why critical thinking remains important when using them.</p>
+    </article>
+    <article class="content-card">
+      <h2>Contact</h2>
+      <p>Questions, corrections, and suggestions are welcome on the <a class="story-link" href="contact.html">Contact page</a>.</p>
+    </article>
+  </main>
+  <aside class="consent-banner" id="consentBanner" hidden aria-labelledby="consentTitle">
+    <div><h2 id="consentTitle">A quick privacy choice</h2><p>With your permission, Google Analytics helps us understand general site usage.</p></div>
+    <div class="consent-actions"><button class="consent-secondary" id="declineAnalytics" type="button">No analytics</button><button class="consent-primary" id="acceptAnalytics" type="button">Allow analytics</button></div>
+  </aside>
+  <script src="site.js"></script>
+</body>
+</html>
