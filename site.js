@@ -2,12 +2,13 @@ const ANALYTICS_ID = 'G-W5MG295476';
 const CONSENT_KEY = 'secondguessit-analytics-consent';
 
 function loadAnalytics() {
-  if (window.gtag) return;
+  if (window.__analyticsLoaded) return;
 
   window.dataLayer = window.dataLayer || [];
-  window.gtag = function gtag() {
+  window.gtag = window.gtag || function gtag() {
     window.dataLayer.push(arguments);
   };
+  window.gtag('consent', 'default', { analytics_storage: 'granted' });
   window.gtag('js', new Date());
   window.gtag('config', ANALYTICS_ID, { anonymize_ip: true });
 
@@ -15,6 +16,22 @@ function loadAnalytics() {
   script.async = true;
   script.src = `https://www.googletagmanager.com/gtag/js?id=${ANALYTICS_ID}`;
   document.head.append(script);
+  window.__analyticsLoaded = true;
+}
+
+function disableAnalytics() {
+  window.dataLayer = [];
+  window.gtag = window.gtag || function gtag() {
+    window.dataLayer.push(arguments);
+  };
+  window.gtag('consent', 'update', { analytics_storage: 'denied' });
+
+  const existingScript = document.querySelector(`script[src*="googletagmanager.com/gtag/js?id=${ANALYTICS_ID}"]`);
+  if (existingScript) {
+    existingScript.remove();
+  }
+
+  window.__analyticsLoaded = false;
 }
 
 function getConsent() {
@@ -40,6 +57,8 @@ const storedConsent = getConsent();
 
 if (storedConsent === 'accepted') {
   loadAnalytics();
+} else if (storedConsent === 'declined') {
+  disableAnalytics();
 } else if (!storedConsent && consentBanner) {
   consentBanner.hidden = false;
 }
@@ -53,6 +72,7 @@ acceptAnalytics?.addEventListener('click', () => {
 declineAnalytics?.addEventListener('click', () => {
   setConsent('declined');
   consentBanner.hidden = true;
+  disableAnalytics();
 });
 
 const menuButton = document.querySelector('.menu-button');
